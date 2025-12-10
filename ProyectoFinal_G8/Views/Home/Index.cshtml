@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="row g-3 mb-5">
+    <!--Tarjeta-->
+    <!-- Card 1 -->
+    <div class="col-12 col-md-3">
+        <div class="card rounded-4 p-3 shadow-sm border-0 bg-3 animation">
+            <span class="fw-bold text-secondary">Prestamo de Herramientas</span>
+            <h3 class="fw-bold mb-0">20</h3>
+            <small class="text-muted">Unidades</small>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+        <div class="card rounded-4 p-3 shadow-sm border-0 bg-2 animation">
+            <span class="fw-bold text-secondary">Cantidad de Empleados</span>
+            <h3 class="fw-bold mb-0">15</h3>
+            <small class="text-muted">Personas</small>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+        <div class="card rounded-4 p-3 shadow-sm border-0 bg-3 animation">
+            <span class="fw-bold text-secondary">Proyectos</span>
+            <h3 class="fw-bold mb-0">4</h3>
+            <small class="text-muted">Activos</small>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+        <div class="card rounded-4 p-3 shadow-sm border-0 bg-2 animation">
+            <span class="fw-bold text-secondary">Inventario de Herramientas</span>
+            <h3 class="fw-bold mb-0">100</h3>
+            <small class="text-muted">Herramientas</small>
+        </div>
+    </div>
+
+</section>
+
+<section class="row">
+    <div class="col-12">
+        <div class="card p-3 shadow-lg">
+            <div class="card-header">
+                <h4>Gráfico</h4>
+            </div>
+            <div class="card-body" style="height: 300px;">
+                <canvas id="grafico">
+                </canvas>p
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="~/js/graficos.js"></script>
+}
