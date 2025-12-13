@@ -77,9 +77,14 @@
                         <option hidden selected disabled>Seleccione una herramienta...</option>
                     </select>
 
+                    <label class="col-form-label fw-semibold">Empleado</label>
+                    <select class="form-select" id="selectEmpleadoModal" required>
+                        <option hidden selected disabled>Seleccione un empleado...</option>
+                    </select>
+
                     <!-- Código -->
                     <label class="col-form-label fw-semibold mt-3">Código de Unidad</label>
-                    <input type="text" id="codigoUnidad" class="form-control"
+                    <input type="text" id="codigoUnidad" class="form-control" readonly
                            placeholder="Código de la herramienta" required />
 
                     <!-- Fecha -->
@@ -105,3 +110,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script src="~/js/prestamos.js"></script>
+}

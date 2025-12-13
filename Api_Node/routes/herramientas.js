@@ -22,6 +22,36 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/buenas", async (req, res) => {
+  try {
+    const herramientas = await Herramienta.find().where("estado").equals("Buena");
+    res.json(herramientas);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.get("/cantidad/estados", async (req, res) => {
+  try {
+    const buenas = await Herramienta.countDocuments().where("estado").equals("Buena");
+    const ocupadas = await Herramienta.countDocuments().where("estado").equals("Ocupada");
+    const malas = await Herramienta.countDocuments().where("estado").equals("Mala");
+    const reparacion = await Herramienta.countDocuments().where("estado").equals("En Reparación");
+    res.json({buenas:buenas,ocupadas:ocupadas,malas:malas,reparacion:reparacion});
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.get("/cantidad", async (req, res) =>{
+  try{
+    let cantidad = await Herramienta.countDocuments();
+    res.json({cantidad:cantidad});
+  }catch(error){
+    res.status(500).json({message:error.message});
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const herramienta = await Herramienta.findById(req.params.id);

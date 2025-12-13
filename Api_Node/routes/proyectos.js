@@ -24,6 +24,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+//Cantidad Activos
+router.get("/cantidad", async (req, res) =>{
+  try{
+    let cantidad = await Proyecto.countDocuments().where("estado").equals(true);
+    res.json({cantidad:cantidad});
+  }catch(error){
+    res.status(500).json({message:error.message});
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const proyecto = await Proyecto.findById(req.params.id)

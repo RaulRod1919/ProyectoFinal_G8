@@ -22,6 +22,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/cantidad", async (req, res) =>{
+  try{
+    let cantidad = await Empleado.countDocuments();
+    res.json({cantidad:cantidad});
+  }catch(error){
+    res.status(500).json({message:error.message});
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const empleado = await Empleado.findById(req.params.id);
