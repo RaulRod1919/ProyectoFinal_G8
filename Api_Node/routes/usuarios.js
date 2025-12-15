@@ -84,4 +84,32 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.post("/login", async (req, res) => {
+  try {
+    const { correo, password } = req.body;
+
+    const usuario = await Usuario.findOne({ correo });
+    if (!usuario) {
+      return res.status(401).json({ message: "Correo o contraseña incorrectos" });
+    }
+
+    const esValida = await bcrypt.compare(password, usuario.password);
+    if (!esValida) {
+      return res.status(401).json({ message: "Correo o contraseña incorrectos" });
+    }
+
+    const userResponse = {
+      _id: usuario._id,
+      correo: usuario.correo,
+      rol: usuario.rol
+    };
+
+    res.json(userResponse);
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 module.exports = router;

@@ -36,7 +36,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" id="menu-herramientas">
                             <a class="nav-link nav-link-modern dropdown-toggle"
                                href="#"
                                id="dropdownProveedores"
@@ -63,7 +63,7 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" id="menu-proveedores">
                             <a class="nav-link nav-link-modern dropdown-toggle"
                                href="#"
                                id="dropdownProveedores"
@@ -90,19 +90,19 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="menu-requisiciones">
                             <a class="nav-link nav-link-modern" asp-controller="Requisiciones" asp-action="Index">
                                 <i class="bi-arrow-left-right me-1"></i> Requisiciones
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="menu-empleados">
                             <a class="nav-link nav-link-modern" asp-controller="Empleados" asp-action="Index">
                                 <i class="bi bi-people me-1"></i> Empleados
                             </a>
                         </li>
 
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" id="menu-materiales">
                             <a class="nav-link nav-link-modern dropdown-toggle"
                                href="#"
                                id="dropdownMateriales"
@@ -135,15 +135,21 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="menu-proyectos">
                             <a class="nav-link nav-link-modern" asp-controller="Proyectos" asp-action="Index">
                                 <i class="bi bi-folder2 me-1"></i> Proyectos
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="menu-areas">
                             <a class="nav-link nav-link-modern" asp-controller="Areas" asp-action="Index">
                                 <i class="bi bi-diagram-3 me-1"></i> Áreas
+                            </a>
+                        </li>
+
+                        <li class="nav-item" id="menu-areas">
+                            <a class="nav-link nav-link-modern" asp-controller="Auth" asp-action="Index" id="cerrarSesion">
+                                <i class="bi bi-box-arrow-right me-1"></i> Cerrar Sesión
                             </a>
                         </li>
 

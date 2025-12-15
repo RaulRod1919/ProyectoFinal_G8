@@ -50,7 +50,6 @@ $(document).ready(function () {
             return;
         }
 
-        // Validación rápida por si falta algo
         const invalido = detalle.some(d => !d.idMaterial || !d.cantidad || d.cantidad <= 0 || d.precioTotalNeto < 0);
         if (invalido) {
             alert("Revise materiales y cantidades.");
@@ -60,7 +59,6 @@ $(document).ready(function () {
         const body = { idProveedor, estado, detalle };
 
         if (!idSolicitud) {
-            // POST
             $.ajax({
                 url: API_SOLICITUDES,
                 type: "POST",
@@ -76,7 +74,6 @@ $(document).ready(function () {
                 }
             });
         } else {
-            // PUT
             $.ajax({
                 url: `${API_SOLICITUDES}/${idSolicitud}`,
                 type: "PUT",
@@ -94,10 +91,6 @@ $(document).ready(function () {
         }
     });
 });
-
-/* =========================
-   CARGAS
-========================= */
 
 function cargarProveedores() {
     $.get(API_PROVEEDORES, function (data) {
@@ -159,10 +152,6 @@ function cargarSolicitudes() {
     });
 }
 
-/* =========================
-   UI DETALLE
-========================= */
-
 function limpiarFormulario() {
     $("#idSolicitud").val("");
     $("#selectProveedor").val("");
@@ -172,7 +161,6 @@ function limpiarFormulario() {
 
 function agregarFilaMaterial(detalle = null) {
 
-    // arma las opciones desde listaMateriales
     let opciones = `<option hidden selected disabled>Seleccione material...</option>`;
     listaMateriales.forEach(m => {
         opciones += `<option value="${m._id}" data-precio="${m.precio}">${m.nombre}</option>`;
@@ -202,12 +190,10 @@ function agregarFilaMaterial(detalle = null) {
 
     $("#contenedorMateriales").append(fila);
 
-    // set material si viene editando
     if (idMaterial) {
         fila.find(".sel-material").val(idMaterial);
     }
 
-    // eventos para recalcular
     fila.find(".sel-material, .inp-cantidad").on("change input", function () {
         recalcularFila(fila);
     });
@@ -248,9 +234,6 @@ function leerDetalleDesdeUI() {
     return detalle;
 }
 
-/* =========================
-   EDITAR / ELIMINAR
-========================= */
 
 function editarSolicitud(id) {
     const s = solicitudesCache.find(x => x._id === id);
@@ -260,7 +243,6 @@ function editarSolicitud(id) {
     $("#tituloModal").text("Editar Solicitud");
     $("#idSolicitud").val(s._id);
 
-    // set proveedor/estado (ojo: populate devuelve objeto)
     $("#selectProveedor").val(s.idProveedor?._id || s.idProveedor);
     $("#selectEstado").val(s.estado || "Pendiente");
 
@@ -288,9 +270,6 @@ function eliminarSolicitud(id) {
     });
 }
 
-/* =========================
-   HELPERS
-========================= */
 
 function badgeEstado(estado) {
     const e = (estado || "").toLowerCase();

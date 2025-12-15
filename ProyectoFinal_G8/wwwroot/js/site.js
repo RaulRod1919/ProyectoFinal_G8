@@ -1,4 +1,35 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿
+$(document).ready(function () {
 
-// Write your JavaScript code.
+    const usuarioStorage = sessionStorage.getItem("usuario");
+
+    if (!usuarioStorage) {
+        return;
+    }
+
+    const usuario = JSON.parse(usuarioStorage);
+    const rol = usuario.rol;
+
+    if (rol === "Bodegero") {
+        $("#menu-proveedores").hide();
+        $("#menu-empleados").hide();
+        $("#menu-proyectos").hide();
+        $("#menu-areas").hide();
+    }
+
+    if (rol === "Admin") {
+        $(".nav-item").show();
+    }
+
+    $("#cerrarSesion").on("click", function (e) {
+        e.preventDefault();
+        sessionStorage.clear();
+        window.location.href = "/Auth/Index";
+    });
+
+});
+
+$("#cerrar-modal").on("click", function () {
+    $("#mensaje").fadeOut();
+});
+

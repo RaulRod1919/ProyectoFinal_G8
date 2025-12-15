@@ -7,7 +7,6 @@ $(document).ready(function () {
 
     cargarProveedores();
 
-    // 🔹 Crear / actualizar
     $("#formRegistroProveedor").submit(function (e) {
         e.preventDefault();
 
@@ -30,7 +29,6 @@ $(document).ready(function () {
         }
     });
 
-    // 🔎 Buscador
     let debounceTimer = null;
     $buscador.on("input", function () {
         ultimoFiltro = $(this).val().toLowerCase().trim();
@@ -46,7 +44,6 @@ $(document).ready(function () {
         });
     }
 
-    // 📥 GET
     function cargarProveedores() {
         $.get(API_URL, function (data) {
             let html = "";
@@ -103,7 +100,7 @@ $(document).ready(function () {
 
     function llenarFormulario(id) {
         $.get(`${API_URL}/${id}`, function (p) {
-            $("#idProveedor").val(p._id); // 🔥 ESTO ES CLAVE
+            $("#idProveedor").val(p._id);
             $("#nombre").val(p.nombre);
             $("#telefono").val(p.telefono);
         });
@@ -137,6 +134,6 @@ $(document).ready(function () {
     function cerrarModal() {
         $("#registroModal").modal("hide");
         $("#formRegistroProveedor")[0].reset();
-        $("#idProveedor").val(""); // 🔥 LIMPIAR ID
+        $("#idProveedor").val("");
     }
 });

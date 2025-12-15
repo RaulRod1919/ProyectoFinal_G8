@@ -10,9 +10,6 @@ $(document).ready(function () {
     cargarProyectos();
     cargarMateriales();
 
-    // ===============================
-    // 📌 Cargar Proyectos
-    // ===============================
     function cargarProyectos() {
         $.get(API_PROYECTOS, function (data) {
             let html = `<option hidden selected disabled>Seleccione un proyecto...</option>`;
@@ -22,10 +19,6 @@ $(document).ready(function () {
             $("#selectProyecto").html(html);
         });
     }
-
-    // ===============================
-    // 📌 Cargar Materiales
-    // ===============================
     function cargarMateriales() {
         $.get(API_MATERIALES, function (data) {
             listaMateriales = data;
@@ -37,18 +30,12 @@ $(document).ready(function () {
         });
     }
 
-    // ===============================
-    // 📌 Cambio de proyecto
-    // ===============================
     $("#selectProyecto").change(function () {
         const idProyecto = $(this).val();
         $("#idProyectoSeleccionado").val(idProyecto);
         cargarMaterialesProyecto(idProyecto);
     });
 
-    // ===============================
-    // 📌 Cargar materiales del proyecto
-    // ===============================
     function cargarMaterialesProyecto(idProyecto) {
         $.get(API_MAT_PROYECTOS, function (data) {
 
@@ -93,9 +80,6 @@ $(document).ready(function () {
         });
     }
 
-    // ===============================
-    // ➕ Agregar material al proyecto
-    // ===============================
     $("#formAgregarMaterial").submit(function (e) {
         e.preventDefault();
 
@@ -111,7 +95,6 @@ $(document).ready(function () {
         const materialProyectoExistente = registrosProyecto[0];
 
         if (materialProyectoExistente) {
-            // 🔄 Actualizar
             const detalle = materialProyectoExistente.detalle;
 
             const existente = detalle.find(d => d.idMaterial._id === idMaterial);
@@ -135,7 +118,6 @@ $(document).ready(function () {
             });
 
         } else {
-            // 🆕 Crear
             const nuevo = {
                 idProyecto,
                 detalle: [{ idMaterial, cantidad }]
@@ -155,9 +137,6 @@ $(document).ready(function () {
         }
     });
 
-    // ===============================
-    // 🗑 Eliminar material
-    // ===============================
     function eliminarMaterial(index) {
         if (!confirm("¿Eliminar material del proyecto?")) return;
 

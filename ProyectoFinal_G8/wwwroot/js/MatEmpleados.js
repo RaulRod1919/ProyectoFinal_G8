@@ -9,9 +9,6 @@ $(document).ready(function () {
     cargarEmpleados();
     cargarMateriales();
 
-    /* ===============================
-       📌 Cargar empleados (USAR CODIGO)
-    =============================== */
     function cargarEmpleados() {
         $.get(API_EMPLEADOS, function (data) {
             let html = `<option hidden selected disabled>Seleccione un empleado...</option>`;
@@ -26,9 +23,6 @@ $(document).ready(function () {
         });
     }
 
-    /* ===============================
-       📌 Cargar materiales
-    =============================== */
     function cargarMateriales() {
         $.get(API_MATERIALES, function (data) {
             let html = `<option hidden selected disabled>Seleccione un material...</option>`;
@@ -39,17 +33,11 @@ $(document).ready(function () {
         });
     }
 
-    /* ===============================
-       📌 Cambio de empleado
-    =============================== */
     $("#selectEmpleado").change(function () {
         const codigoEmpleado = Number($(this).val());
         cargarMaterialesEmpleado(codigoEmpleado);
     });
 
-    /* ===============================
-       📌 Listar materiales del empleado
-    =============================== */
     function cargarMaterialesEmpleado(codigoEmpleado) {
 
         $.get(API_MAT_EMPLEADOS, function (data) {
@@ -95,9 +83,6 @@ $(document).ready(function () {
         });
     }
 
-    /* ===============================
-       ➕ Agregar material
-    =============================== */
     $("#formAgregarMaterial").submit(function (e) {
         e.preventDefault();
 
@@ -113,7 +98,6 @@ $(document).ready(function () {
         const registroExistente = registrosEmpleado[0];
 
         if (registroExistente) {
-            // 🔄 ACTUALIZAR
             const detalle = registroExistente.detalle;
             const existente = detalle.find(d => d.idMaterial._id === idMaterial);
 
@@ -136,7 +120,6 @@ $(document).ready(function () {
             });
 
         } else {
-            // 🆕 CREAR
             const nuevo = {
                 codigo: codigoEmpleado,
                 detalle: [{ idMaterial, cantidad }]
@@ -160,9 +143,6 @@ $(document).ready(function () {
         }
     });
 
-    /* ===============================
-       🗑 Eliminar material
-    =============================== */
     function eliminarMaterial(index) {
         if (!confirm("¿Eliminar material del empleado?")) return;
 

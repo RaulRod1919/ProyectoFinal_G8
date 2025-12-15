@@ -15,7 +15,6 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const lista = await RequisicionOtrasAreas.find()
-      .populate("codigo")       // Empleado
       .populate("idProyecto");  // Proyecto
 
     res.json(lista);
