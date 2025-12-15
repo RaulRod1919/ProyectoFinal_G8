@@ -1,17 +1,19 @@
-﻿<!-- Encabezado -->
+﻿@{
+    ViewData["Title"] = "Solicitud de Materiales";
+}
+
+<!-- Encabezado -->
 <div class="mb-4">
     <h3 class="fw-bold mb-1">Solicitud de Materiales</h3>
     <p class="text-muted">Administra las solicitudes enviadas a los proveedores.</p>
 </div>
 
-<!-- Acciones -->
-<ul class="nav nav-pills mb-4">
-    <li class="nav-item">
-        <button class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#solicitudModal" id="btnNuevaSolicitud">
-            <i class="bi bi-plus-lg me-2"></i> Nueva Solicitud
-        </button>
-    </li>
-</ul>
+<!-- Botón -->
+<button class="btn btn-primary rounded-pill px-4 mb-4"
+        data-bs-toggle="modal" data-bs-target="#solicitudModal"
+        id="btnNuevaSolicitud">
+    <i class="bi bi-plus-lg me-2"></i> Nueva Solicitud
+</button>
 
 <!-- Tabla -->
 <div class="card shadow-sm rounded-4">
@@ -31,16 +33,14 @@
                         <th class="text-end">Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="tablaSolicitudes">
-                    <!-- Se rellena dinámicamente -->
-                </tbody>
+                <tbody id="tablaSolicitudes"></tbody>
             </table>
         </div>
     </div>
 </div>
 
-<!-- Modal Crear/Editar -->
-<div class="modal fade" id="solicitudModal" tabindex="-1" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="solicitudModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -50,27 +50,24 @@
             </div>
 
             <form id="formSolicitud">
-                <input type="hidden" id="idSolicitud" />
+                <input type="hidden" id="idSolicitud">
 
                 <div class="modal-body">
 
-                    <!-- Proveedor -->
-                    <label class="fw-semibold">Proveedor</label>
+                    <label>Proveedor</label>
                     <select class="form-select mb-3" id="selectProveedor" required>
                         <option hidden selected disabled>Seleccione un proveedor...</option>
                     </select>
 
-                    <!-- Estado -->
-                    <label class="fw-semibold">Estado</label>
+                    <label>Estado</label>
                     <select class="form-select mb-4" id="selectEstado" required>
                         <option>Pendiente</option>
                         <option>Aprobado</option>
                         <option>Recibido</option>
                     </select>
 
-                    <!-- Materiales -->
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <label class="fw-semibold mb-0">Materiales Solicitados</label>
+                        <label>Materiales</label>
                         <div>
                             <button type="button" class="btn btn-success btn-sm" id="btnAgregarMaterial">
                                 <i class="bi bi-plus-lg"></i>
@@ -81,45 +78,20 @@
                         </div>
                     </div>
 
-                    <div id="contenedorMateriales">
-                        <!-- Input dinámico -->
-                        <div class="row g-3 mb-3 item-material">
-
-                            <!-- Material (select) -->
-                            <div class="col-md-6">
-                                <label>Material</label>
-                                <select class="form-select material-select" required>
-                                    <option hidden selected disabled>Seleccione un material...</option>
-                                </select>
-                            </div>
-
-                            <!-- Cantidad -->
-                            <div class="col-md-3">
-                                <label>Cantidad</label>
-                                <input type="number" min="1" class="form-control cantidad-input" required />
-                            </div>
-
-                            <!-- Precio Neto -->
-                            <div class="col-md-3">
-                                <label>Precio Neto</label>
-                                <input type="text" class="form-control precio-neto" readonly />
-                            </div>
-
-                        </div>
-                    </div>
+                    <div id="contenedorMateriales"></div>
 
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
-
             </form>
+
         </div>
     </div>
 </div>
 
 @section Scripts {
-    <script src="~/js/manejoinputs_solicitud.js"></script>
+    <script src="~/js/solicitud.js"></script>
 }

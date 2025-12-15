@@ -21,4 +21,8 @@ const MaterialEmpleadoSchema = new mongoose.Schema({
   ]
 });
 
-module.exports = mongoose.model("MaterialEmpleado", MaterialEmpleadoSchema, "materialesEmpleados");
+module.exports = mongoose.model(
+  "MaterialEmpleado",
+  MaterialEmpleadoSchema,
+  "materialesEmpleados"
+);

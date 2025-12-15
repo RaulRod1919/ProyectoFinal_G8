@@ -1,4 +1,8 @@
-﻿<!-- Encabezado -->
+﻿@{
+    ViewData["Title"] = "Materiales por Proyecto";
+}
+
+<!-- Encabezado -->
 <div class="mb-4">
     <h3 class="fw-bold mb-1">Materiales por Proyecto</h3>
     <p class="text-muted">Administra los materiales asociados a cada proyecto.</p>
@@ -17,7 +21,10 @@
 <!-- Acciones -->
 <ul class="nav nav-pills mb-4">
     <li class="nav-item">
-        <button class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#registroModal">
+        <button class="btn btn-primary rounded-pill px-4"
+                data-bs-toggle="modal"
+                data-bs-target="#registroModal"
+                id="btnNuevoMaterialProyecto">
             <i class="bi bi-plus-lg me-2"></i> Nuevo Material
         </button>
     </li>
@@ -43,18 +50,17 @@
                     </tr>
                 </thead>
                 <tbody id="tablaMaterialesProyecto">
-                    <!-- Se rellenará dinámicamente -->
+                    <!-- Se llena dinámicamente -->
                 </tbody>
             </table>
         </div>
     </div>
 
     <div class="card-footer bg-white py-3">
-        <span class="fw-bold">Total del Proyecto: </span>
+        <span class="fw-bold">Total del Proyecto:</span>
         <span id="totalProyecto" class="ms-2 text-primary fw-bold">₡0.00</span>
     </div>
 </div>
-
 
 <!-- Modal Agregar Material -->
 <div class="modal fade" id="registroModal" tabindex="-1" aria-hidden="true">
@@ -68,7 +74,6 @@
 
             <form id="formAgregarMaterial">
                 <input type="hidden" id="idProyectoSeleccionado" />
-                <!--La idea es si ya existe un proyecto con materiales solo actualizar el Detalle-->
 
                 <div class="modal-body">
 
@@ -78,17 +83,29 @@
                     </select>
 
                     <label class="col-form-label fw-semibold mt-3">Cantidad</label>
-                    <input type="number" min="1" class="form-control" id="cantidadMaterial"
-                           placeholder="Ingrese la cantidad" required />
+                    <input type="number"
+                           min="1"
+                           class="form-control"
+                           id="cantidadMaterial"
+                           placeholder="Ingrese la cantidad"
+                           required />
 
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Agregar
+                    </button>
                 </div>
             </form>
 
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/matProyectos.js"></script>
+}

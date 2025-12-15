@@ -7,9 +7,9 @@ const ProveedorSchema = new mongoose.Schema({
     trim: true
   },
   telefono: {
-    type: Number,
+    type: String,
     required: true
   }
 });
 
-module.exports = mongoose.model("Proveedor", ProveedorSchema, "proveedores");
+module.exports = mongoose.model("Proveedor", ProveedorSchema);

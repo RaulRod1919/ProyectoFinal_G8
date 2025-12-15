@@ -1,58 +1,53 @@
-﻿<!-- Encabezado -->
-<div class="mb-4">
-    <h3 class="fw-bold mb-1">Proveedores</h3>
-    <p class="text-muted">Administra todos los proveedores registrados en el sistema.</p>
+﻿@{
+    ViewData["Title"] = "Proveedores";
+}
+
+<h3 class="fw-bold mb-1">Proveedores</h3>
+<p class="text-muted">Administra todos los proveedores registrados.</p>
+
+<div class="input-group w-50 mb-4">
+    <span class="input-group-text"><i class="bi bi-search"></i></span>
+    <input type="text" id="buscarProveedor" class="form-control" placeholder="Buscar proveedor">
 </div>
 
-<!-- Acciones -->
-<div class="d-flex justify-content-between align-items-center mb-4">
-
-    <!-- Buscador -->
-    <div class="input-group w-50">
-        <span class="input-group-text bg-light">
-            <i class="bi bi-search"></i>
-        </span>
-        <input type="text" class="form-control" placeholder="Buscar proveedor..." id="buscarProveedor">
-    </div>
-
-</div>
-
-<!-- Opciones -->
-<ul class="nav nav-pills mb-4">
-    <li class="nav-item">
-        <button class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#registroModal">
-            <i class="bi bi-plus-lg me-2"></i> Nuevo Proveedor
-        </button>
-    </li>
-</ul>
+<button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#registroModal">
+    <i class="bi bi-plus-lg"></i> Nuevo Proveedor
+</button>
 
 <!-- Modal -->
-<div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="modalProveedorLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
+<div class="modal fade" id="registroModal">
+    <div class="modal-dialog">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="modalProveedorLabel">Registrar Proveedor</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <h5 class="modal-title">Proveedor</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
             <form id="formRegistroProveedor">
-                <input type="hidden" id="idProveedor" />
+                <input type="hidden" id="idProveedor">
 
                 <div class="modal-body">
 
-                    <label class="col-form-label">Nombre</label>
-                    <input type="text" class="form-control" placeholder="Nombre del proveedor"
-                           name="nombre" id="nombre" required />
+                    <label>Nombre</label>
+                    <input type="text" id="nombre" class="form-control" required>
 
-                    <label class="col-form-label mt-3">Teléfono</label>
-                    <input type="number" class="form-control" placeholder="Teléfono"
-                           name="telefono" id="telefono" required />
+                    <label class="mt-3">Teléfono</label>
+                    <input type="text" id="telefono" class="form-control" required>
+
+                    <label class="mt-3">Correo</label>
+                    <input type="email" id="correo" class="form-control" required>
+
+                    <label class="mt-3">Estado</label>
+                    <select id="estado" class="form-select" required>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
 
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
@@ -61,61 +56,20 @@
     </div>
 </div>
 
-<!-- Tabla -->
-<div class="card shadow-sm rounded-4">
-    <div class="card-header bg-light py-3">
-        <h5 class="fw-semibold mb-0">Listado de Proveedores</h5>
-    </div>
+<table class="table table-bordered mt-4">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Estado</th>
+            <th class="text-end">Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="tablaProveedores"></tbody>
+</table>
 
-    <div class="card-body p-0">
-        <div class="table-responsive">
-            <table class="table align-middle mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Teléfono</th>
-                        <th class="text-end">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tablaProveedores">
-                    <!-- Ejemplo estático -->
-                    <tr>
-                        <td>01</td>
-                        <td>Proveedora del Norte</td>
-                        <td>2456-7890</td>
-                        <td class="text-end">
-                            <button class="btn btn-sm btn-outline-primary me-2"
-                                    data-bs-toggle="modal" data-bs-target="#registroModal">
-                                <i class="bi bi-pencil-square"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="card-footer bg-white py-3">
-        <!-- Paginación -->
-        <nav>
-            <ul class="pagination justify-content-end m-0">
-                <li class="page-item disabled">
-                    <span class="page-link">Anterior</span>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Siguiente</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</div>
+@section Scripts {
+    <script src="~/js/proveedores.js"></script>
+}

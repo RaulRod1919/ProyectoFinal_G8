@@ -1,4 +1,8 @@
-﻿<!-- Encabezado -->
+﻿@{
+    ViewData["Title"] = "Materiales por Empleado";
+}
+
+<!-- Encabezado -->
 <div class="mb-4">
     <h3 class="fw-bold mb-1">Materiales por Empleado</h3>
     <p class="text-muted">Administra los materiales asignados a cada empleado.</p>
@@ -43,7 +47,7 @@
                     </tr>
                 </thead>
                 <tbody id="tablaMaterialesEmpleado">
-                    <!-- Se rellenará dinámicamente -->
+                    <!-- Se rellena dinámicamente -->
                 </tbody>
             </table>
         </div>
@@ -67,7 +71,6 @@
 
             <form id="formAgregarMaterial">
                 <input type="hidden" id="idEmpleadoSeleccionado" />
-                <!--Si ya existe una entrada para este empleado, solo se actualiza el Detalle-->
 
                 <div class="modal-body">
 
@@ -91,3 +94,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/matEmpleados.js"></script>
+}
